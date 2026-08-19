@@ -4,6 +4,20 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Bautismo - María José Díaz López</title>
+
+  <!-- Meta Etiquetas para Vista Previa en WhatsApp / Redes Sociales (Open Graph) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Mi Bautismo - María José Díaz López 🕊️" />
+  <meta property="og:description" content="Acompáñanos a celebrar el bautismo de María José. Sábado 29 de Agosto a las 13:30 hrs." />
+  <meta property="og:image" content="https://invitacionmajo.vercel.app/Portada.png" />
+  <meta property="og:image:width" content="800" />
+  <meta property="og:image:height" content="800" />
+
+  <!-- Compatibilidad adicional para Twitter/X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Mi Bautismo - María José Díaz López 🕊️" />
+  <meta name="twitter:description" content="Acompáñanos a celebrar el bautismo de María José. Sábado 29 de Agosto a las 13:30 hrs." />
+  <meta name="twitter:image" content="https://invitacionmajo.vercel.app/vestido.jpeg" />
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -474,14 +488,14 @@
         </p>
       </div>
 
-      <!-- ESCENA 4: Resumen Final con Botón de Guía de Colores -->
+      <!-- ESCENA 4: Resumen Final -->
       <div id="scene4" class="scene">
         <div class="dress-code-title gold-solid-text">Dress Code:</div>
         <div class="dress-code-sub">Blanco o colores claros.</div>
 
         <button class="btn-small-guide" onclick="openColorModal()">🎨 GUÍA DE COLORES</button>
 
-        <a href="https://wa.me/525517839062?text=Hola,%20confirmo%20mi%20asistencia%20al%20bautismo%20de%20Majito" target="_blank" class="btn btn-outline" style="margin-bottom: 8px;">
+        <a href="https://wa.me/?text=Hola,%20confirmo%20mi%20asistencia%20al%20bautismo%20de%20Mar%C3%ADa%20Jos%C3%A9" target="_blank" class="btn btn-outline" style="margin-bottom: 8px;">
           📲 FAVOR DE CONFIRMAR TU ASISTENCIA AQUÍ
         </a>
 
@@ -610,7 +624,6 @@
       });
     }
 
-    /* Funciones del Modal Guía de Colores */
     function openColorModal() {
       colorModal.classList.add('active');
     }
