@@ -455,33 +455,53 @@
     }
 
     function addToCalendar() {
-      // Formato iCalendar (.ics) estándar
-      const icsContent = [
-        "BEGIN:VCALENDAR",
-        "VERSION:2.0",
-        "PRODID:-//Invitacion Bautismo//Maria Jose//ES",
-        "CALSCALE:GREGORIAN",
-        "METHOD:PUBLISH",
-        "BEGIN:VEVENT",
-        "SUMMARY:Bautismo de María José Díaz López",
-        "DESCRIPTION:Estas cordialmente invitado al bautismo de María José. Dress code: Blanco o colores claros.",
-        "LOCATION:https://maps.app.goo.gl/jRLju4VTfpkrJHfr8",
-        "DTSTART:20260829T193000Z",
-        "DTEND:20260829T220000Z",
-        "STATUS:CONFIRMED",
-        "END:VEVENT",
-        "END:VCALENDAR"
-      ].join("\r\n");
-
-      // Crear archivo temporal .ics
-      const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
-      const link = document.createElement("a");
-      link.href = window.URL.createObjectURL(blob);
-      link.setAttribute("download", "Bautismo_Maria_Jose.ics");
+      const title = encodeURIComponent("Bautismo de María José Díaz López");
+      const details = encodeURIComponent("Estas cordialmente invitado al bautismo de María José. Dress code: Blanco o colores claros.");
+      const location = encodeURIComponent("https://maps.app.goo.gl/jRLju4VTfpkrJHfr8");
       
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      // Fechas en UTC: 29 de Agosto de 2026 de 13:30 a 16:00 CST
+      const startGCal = "20260829T193000Z";
+      const endGCal = "20260829T220000Z";
+
+      const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      const isAndroid = /android/i.test(userAgent);
+      const isiOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+
+      if (isAndroid) {
+        // En Android abre directamente la app de Google Calendar/Sistema sin pasar por el navegador
+        const intentUrl = `intent://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startGCal}/${endGCal}&details=${details}&location=${location}#Intent;scheme=https;package=com.google.android.calendar;end`;
+        window.location.href = intentUrl;
+      } else if (isiOS) {
+        // En iOS genera el evento para abrir la app Calendario de Apple
+        const icsContent = [
+          "BEGIN:VCALENDAR",
+          "VERSION:2.0",
+          "PRODID:-//Invitacion Bautismo//Maria Jose//ES",
+          "CALSCALE:GREGORIAN",
+          "METHOD:PUBLISH",
+          "BEGIN:VEVENT",
+          "SUMMARY:Bautismo de María José Díaz López",
+          "DESCRIPTION:Dress code: Blanco o colores claros.",
+          "LOCATION:https://maps.app.goo.gl/jRLju4VTfpkrJHfr8",
+          "DTSTART:20260829T193000Z",
+          "DTEND:20260829T220000Z",
+          "STATUS:CONFIRMED",
+          "END:VEVENT",
+          "END:VCALENDAR"
+        ].join("\r\n");
+
+        const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+        const link = document.createElement("a");
+        link.href = window.URL.createObjectURL(blob);
+        link.setAttribute("download", "Bautismo_Maria_Jose.ics");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        // Escritorio / Web standard
+        const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startGCal}/${endGCal}&details=${details}&location=${location}`;
+        window.open(gcalUrl, '_blank');
+      }
     }
 
     v0.addEventListener('timeupdate', function() {
