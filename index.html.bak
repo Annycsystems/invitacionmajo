@@ -69,7 +69,7 @@
       text-align: center;
     }
 
-    /* Pantalla inicial de inicio */
+    /* Pantalla inicial */
     .start-screen {
       position: absolute;
       top: 0;
@@ -321,8 +321,8 @@
       <div class="overlay"></div>
     </div>
 
-    <!-- Audio del Himno -->
-    <audio id="bgMusic" loop preload="auto">
+    <!-- Audio del Himno optimizado para reproducir síncronamente -->
+    <audio id="bgMusic" loop preload="auto" playsinline>
       <source src="himno.mp3" type="audio/mpeg">
     </audio>
 
@@ -393,18 +393,36 @@
     let isStarted = false;
     let crossfadeDone = false;
 
-    function initInvitation(e) {
-      if (e) e.preventDefault();
+    // Forzar la activación del audio directamente en la interacción táctil
+    function unlockAndPlayAudio() {
+      if (audio.paused) {
+        audio.currentTime = 0;
+        audio.play().then(() => {
+          console.log("Audio reproducido con éxito");
+        }).catch(err => {
+          console.log("Error al reproducir audio:", err);
+        });
+      }
+    }
+
+    function initInvitation() {
       if (isStarted) return;
       isStarted = true;
 
-      audio.play().catch(() => {});
+      // Disparo síncrono inmediato dentro del gesto táctil de iOS/Android
+      unlockAndPlayAudio();
+
       startScreen.classList.add('hidden');
       v0.play().catch(() => {});
     }
 
+    // Escuchadores de toque inicial para la pantalla de inicio
     startScreen.addEventListener('click', initInvitation);
-    startScreen.addEventListener('touchstart', initInvitation, { passive: false });
+    startScreen.addEventListener('touchend', initInvitation);
+
+    // Respaldo global: si el navegador móvil bloqueara el primer evento, el segundo toque desbloquea el audio
+    window.addEventListener('touchstart', unlockAndPlayAudio, { once: true });
+    window.addEventListener('click', unlockAndPlayAudio, { once: true });
 
     function triggerHandwriting() {
       const container = document.getElementById('handwritingContainer');
