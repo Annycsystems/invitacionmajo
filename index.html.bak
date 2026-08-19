@@ -328,7 +328,9 @@
       <!-- ESCENA 1: Escritura -->
       <div id="scene1" class="scene">
         <div class="scripture">
-          Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
+          Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.
+		  <br>
+		  En las manos te llevarán, para que tu pie no tropiece en piedra.
           <div class="scripture-ref gold-solid-text">SALMO 91: 11-12</div>
         </div>
       </div>
