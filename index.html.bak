@@ -31,6 +31,11 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html, body {
@@ -72,13 +77,13 @@
       width: 100%;
       height: 100%;
       background-color: #000000;
-      z-index: 20;
+      z-index: 50;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      transition: opacity 1.2s ease-in-out;
+      transition: opacity 1s ease-in-out;
       padding: 20px;
       overflow: visible !important;
     }
@@ -109,12 +114,13 @@
       text-transform: uppercase;
       font-weight: bold;
       border: 1px solid #e1b336;
-      padding: 10px 24px;
+      padding: 10px 28px;
       border-radius: 30px;
       background: rgba(0, 0, 0, 0.65);
       animation: pulse 2s infinite;
       box-shadow: 0 0 15px rgba(225, 179, 54, 0.3);
       text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+      outline: none;
     }
 
     @keyframes pulse {
@@ -295,7 +301,7 @@
   <div class="invitation-card">
     
     <!-- Pantalla Inicial -->
-    <div class="start-screen" id="startScreen" onclick="initInvitation()">
+    <div class="start-screen" id="startScreen">
       <div class="start-title">Mi bautismo</div>
       <div class="start-btn">Iniciar</div>
     </div>
@@ -328,9 +334,7 @@
       <!-- ESCENA 1: Escritura -->
       <div id="scene1" class="scene">
         <div class="scripture">
-          Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.
-		  <br>
-		  En las manos te llevarán, para que tu pie no tropiece en piedra.
+          Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
           <div class="scripture-ref gold-solid-text">SALMO 91: 11-12</div>
         </div>
       </div>
@@ -347,7 +351,7 @@
         </p>
       </div>
 
-      <!-- ESCENA 4: Resumen Final con Botón de Calendario -->
+      <!-- ESCENA 4: Resumen Final -->
       <div id="scene4" class="scene">
         <div class="dress-code-title gold-solid-text">Dress Code:</div>
         <div class="dress-code-sub">Blanco o colores claros.</div>
@@ -356,7 +360,6 @@
           📲 FAVOR DE CONFIRMAR TU ASISTENCIA AQUÍ
         </a>
 
-        <!-- Botón para Agregar al Calendario -->
         <a id="btnCalendar" onclick="addToCalendar()" class="btn btn-outline" style="border-color: #7a520c;">
           📅 AGREGAR A MI CALENDARIO
         </a>
@@ -390,14 +393,18 @@
     let isStarted = false;
     let crossfadeDone = false;
 
-    function initInvitation() {
+    function initInvitation(e) {
+      if (e) e.preventDefault();
       if (isStarted) return;
       isStarted = true;
 
       audio.play().catch(() => {});
       startScreen.classList.add('hidden');
-      v0.play();
+      v0.play().catch(() => {});
     }
+
+    startScreen.addEventListener('click', initInvitation);
+    startScreen.addEventListener('touchstart', initInvitation, { passive: false });
 
     function triggerHandwriting() {
       const container = document.getElementById('handwritingContainer');
@@ -429,21 +436,17 @@
       });
     }
 
-    // Función inteligente para añadir al calendario
     function addToCalendar() {
       const title = encodeURIComponent("Bautismo de María José Díaz López");
       const details = encodeURIComponent("Bautismo de María José. Dress code: Blanco o colores claros.");
-      const location = encodeURIComponent(https://maps.app.goo.gl/jRLju4VTfpkrJHfr8);
+      const location = encodeURIComponent("https://maps.app.goo.gl/jRLju4VTfpkrJHfr8");
       
-      // Fecha en formato UTC: 29 de Agosto de 2026 de 13:30 a 16:00 CST (19:30 a 22:00 UTC)
       const startGCal = "20260829T193000Z";
       const endGCal = "20260829T220000Z";
 
-      // Detecta si es un iPhone/iPad para abrir evento directo o Google Calendar
       const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
       if (isiOS) {
-        // Genera un archivo .ics para Apple Calendar
         const icsData = 
 `BEGIN:VCALENDAR
 VERSION:2.0
@@ -465,18 +468,16 @@ END:VCALENDAR`;
         a.click();
         document.body.removeChild(a);
       } else {
-        // Google Calendar para Android y Desktop
         const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startGCal}/${endGCal}&details=${details}&location=${location}`;
         window.open(gcalUrl, '_blank');
       }
     }
 
-    // Crossfade en t=4.75s para transiciones fluidas
     v0.addEventListener('timeupdate', function() {
       if (v0.currentTime >= 4.75 && !crossfadeDone) {
         crossfadeDone = true;
         
-        v1.play();
+        v1.play().catch(() => {});
         v0.style.opacity = '0';
         v1.style.opacity = '1';
 
@@ -486,7 +487,7 @@ END:VCALENDAR`;
         setTimeout(() => {
           v1.style.opacity = '0';
           v2.style.opacity = '1';
-          v2.play();
+          v2.play().catch(() => {});
 
           s1.classList.remove('active');
           s2.classList.add('active');
