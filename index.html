@@ -5,21 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Bautismo - María José Díaz López</title>
 
-  <!-- Meta Etiquetas para Vista Previa en WhatsApp / Redes Sociales (Open Graph) -->
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mi Bautismo - María José Díaz López" />
+  <meta property="og:title" content="Mi Bautismo - María José Díaz López " />
   <meta property="og:description" content="Acompáñanos a celebrar el bautismo de María José. Sábado 29 de Agosto a las 13:30 hrs." />
   <meta property="og:image" content="https://mi-bautismo-maria-jose.vercel.app/Portada.png" />
-  <meta name="twitter:image" content="https://mi-bautismo-maria-jose.vercel.app/Portada.png" />
   <meta property="og:image:width" content="800" />
   <meta property="og:image:height" content="800" />
 
-  <!-- Compatibilidad adicional para Twitter/X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Mi Bautismo - María José Díaz López 🕊️" />
-  <meta name="twitter:description" content="Acompáñanos a celebrar el bautismo de María José. Sábado 29 de Agosto a las 13:30 hrs." />
-  <meta name="twitter:image" content="https://invitacionmajo.vercel.app/vestido.jpeg" />
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
@@ -65,7 +57,6 @@
       align-items: center;
     }
 
-    /* Contenedor adaptativo */
     .invitation-card {
       width: 92%;
       max-width: 420px;
@@ -84,7 +75,6 @@
       text-align: center;
     }
 
-    /* Pantalla inicial */
     .start-screen {
       position: absolute;
       top: 0;
@@ -144,7 +134,6 @@
       100% { transform: scale(1); opacity: 0.85; }
     }
 
-    /* Capas de Fondo */
     .bg-wrapper {
       position: absolute;
       top: 0;
@@ -326,14 +315,14 @@
       backdrop-filter: blur(4px);
     }
 
-    /* Modal Estilizado para Guía de Colores */
+    /* Modales */
     .modal-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0, 0, 0, 0.75);
+      background: rgba(0, 0, 0, 0.78);
       backdrop-filter: blur(5px);
       z-index: 100;
       display: flex;
@@ -350,9 +339,9 @@
     }
 
     .modal-box {
-      width: 85%;
+      width: 88%;
       max-width: 340px;
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
       border-radius: 20px;
       padding: 22px 18px;
       border: 2px solid #b8860b;
@@ -375,9 +364,9 @@
     }
 
     .modal-subtitle {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: #4a4a4a;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       font-weight: 600;
     }
 
@@ -432,19 +421,47 @@
       cursor: pointer;
       box-shadow: 0 3px 8px rgba(0,0,0,0.2);
     }
+
+    /* Estilos del Formulario de Confirmación */
+    .form-group {
+      margin-bottom: 10px;
+      text-align: left;
+    }
+
+    .form-group label {
+      font-size: 0.82rem;
+      font-weight: bold;
+      color: #5c3d06;
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #b8860b;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      outline: none;
+      background: #fff;
+      font-family: inherit;
+    }
+
+    .form-control:focus {
+      border-color: #7a520c;
+      box-shadow: 0 0 5px rgba(184, 134, 11, 0.4);
+    }
   </style>
 </head>
 <body>
 
   <div class="invitation-card">
     
-    <!-- Pantalla Inicial -->
     <div class="start-screen" id="startScreen">
       <div class="start-title">Mi bautismo</div>
       <div class="start-btn">Iniciar</div>
     </div>
 
-    <!-- Archivos de Video e Imagen -->
     <div class="bg-wrapper">
       <video id="video0" class="bg-media" muted playsinline>
         <source src="video_inicio.mp4" type="video/mp4">
@@ -459,17 +476,14 @@
       <div class="overlay"></div>
     </div>
 
-    <!-- Audio del Himno -->
     <audio id="bgMusic" loop preload="auto" playsinline>
       <source src="himno.mp3" type="audio/mpeg">
     </audio>
 
     <div class="content-wrapper">
       
-      <!-- ESCENA 0: Intro sin texto -->
       <div id="scene0" class="scene active"></div>
 
-      <!-- ESCENA 1: Escritura -->
       <div id="scene1" class="scene">
         <div class="scripture">
           Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
@@ -477,7 +491,6 @@
         </div>
       </div>
 
-      <!-- ESCENA 2: Nombre de la Niña -->
       <div id="scene2" class="scene">
         <p class="text-invitation">Estas cordialmente invitado al bautismo de:</p>
         
@@ -489,16 +502,15 @@
         </p>
       </div>
 
-      <!-- ESCENA 4: Resumen Final -->
       <div id="scene4" class="scene">
         <div class="dress-code-title gold-solid-text">Dress Code:</div>
         <div class="dress-code-sub">Blanco o colores claros.</div>
 
         <button class="btn-small-guide" onclick="openColorModal()">🎨 GUÍA DE COLORES</button>
 
-        <a href="https://wa.me/?text=Hola,%20confirmo%20mi%20asistencia%20al%20bautismo%20de%20Mar%C3%ADa%20Jos%C3%A9" target="_blank" class="btn btn-outline" style="margin-bottom: 8px;">
+        <button onclick="openConfirmModal()" class="btn btn-outline" style="margin-bottom: 8px;">
           📲 FAVOR DE CONFIRMAR TU ASISTENCIA AQUÍ
-        </a>
+        </button>
 
         <p class="text-invitation" style="margin: 4px 0; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.85);">
           <strong>Lugar del evento:</strong><br>
@@ -513,48 +525,59 @@
     </div>
   </div>
 
-  <!-- Modal Flotante de Guía de Colores -->
+  <!-- Modal 1: Guía de Colores -->
   <div class="modal-overlay" id="colorModal" onclick="closeColorModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-title">Código de Vestimenta</div>
       <div class="modal-subtitle">Tonos sugeridos para la celebración:</div>
 
       <div class="color-swatches">
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #FFFFFF;"></div>
-          <span class="swatch-label">Blanco</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #F5F5DC;"></div>
-          <span class="swatch-label">Beige</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #E8D8C8;"></div>
-          <span class="swatch-label">Arena</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #FFFDD0;"></div>
-          <span class="swatch-label">Crema</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #D4E6F1;"></div>
-          <span class="swatch-label">Azul Pastel</span>
-        </div>
-        <div class="swatch-item">
-          <div class="swatch-circle" style="background-color: #D5F5E3;"></div>
-          <span class="swatch-label">Menta</span>
-        </div>
+        <div class="swatch-item"><div class="swatch-circle" style="background-color: #FFFFFF;"></div><span class="swatch-label">Blanco</span></div>
+        <div class="swatch-item"><div class="swatch-circle" style="background-color: #F5F5DC;"></div><span class="swatch-label">Beige</span></div>
+        <div class="swatch-item"><div class="swatch-circle" style="background-color: #E8D8C8;"></div><span class="swatch-label">Arena</span></div>
+        <div class="swatch-item"><div class="swatch-circle" style="background-color: #FFFDD0;"></div><span class="swatch-label">Crema</span></div>
+        <div class="swatch-item"><div class="swatch-circle" style="background-color: #D4E6F1;"></div><span class="swatch-label">Azul Pastel</span></div>
+        <div class="swatch-item"><div class="swatch-circle" style="background-color: #D5F5E3;"></div><span class="swatch-label">Menta</span></div>
       </div>
 
-      <div class="modal-note">
-        ✨ Agradecemos elegir prendas informales/formales en esta gama suave para acompañar la luz de este día tan especial.
-      </div>
-
+      <div class="modal-note">✨ Agradecemos elegir prendas informales/formales en esta gama suave para acompañar la luz de este día tan especial.</div>
       <button class="modal-close-btn" onclick="closeColorModal()">ENTENDIDO</button>
     </div>
   </div>
 
+  <!-- Modal 2: Formulario de Confirmación -->
+  <div class="modal-overlay" id="confirmModal" onclick="closeConfirmModal(event)">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <div class="modal-title">Confirmar Asistencia</div>
+      <div class="modal-subtitle">Ingresa tus datos para agendarte:</div>
+
+      <form id="rsvpForm" onsubmit="submitRSVP(event)">
+        <div class="form-group">
+          <label>Nombre o Familia:</label>
+          <input type="text" id="guestName" class="form-control" placeholder="Ej. Familia Pérez López" required>
+        </div>
+
+        <div class="form-group">
+          <label>Número de personas que asistirán:</label>
+          <input type="number" id="guestCount" class="form-control" min="1" max="10" value="1" required>
+        </div>
+
+        <div class="form-group">
+          <label>Mensaje para Majito (opcional):</label>
+          <input type="text" id="guestMessage" class="form-control" placeholder="¡Con gusto les acompañamos!">
+        </div>
+
+        <button type="submit" id="btnSubmitForm" class="modal-close-btn" style="width: 100%; margin-top: 10px;">
+          CONFIRMAR Y ENVIAR WHATSAPP
+        </button>
+      </form>
+    </div>
+  </div>
+
   <script>
+    // URL del Webhook de Apps Script
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/TU_SCRIPT_ID_AQUI/exec";
+
     const startScreen = document.getElementById('startScreen');
     const v0 = document.getElementById('video0');
     const v1 = document.getElementById('video1');
@@ -568,6 +591,7 @@
     const s4 = document.getElementById('scene4');
 
     const colorModal = document.getElementById('colorModal');
+    const confirmModal = document.getElementById('confirmModal');
 
     let isStarted = false;
     let crossfadeDone = false;
@@ -582,9 +606,7 @@
     function initInvitation() {
       if (isStarted) return;
       isStarted = true;
-
       unlockAndPlayAudio();
-
       startScreen.classList.add('hidden');
       v0.play().catch(() => {});
     }
@@ -625,14 +647,66 @@
       });
     }
 
-    function openColorModal() {
-      colorModal.classList.add('active');
-    }
-
+    function openColorModal() { colorModal.classList.add('active'); }
     function closeColorModal(e) {
       if (!e || e.target === colorModal || e.target.classList.contains('modal-close-btn')) {
         colorModal.classList.remove('active');
       }
+    }
+
+    function openConfirmModal() { confirmModal.classList.add('active'); }
+    function closeConfirmModal(e) {
+      if (!e || e.target === confirmModal) {
+        confirmModal.classList.remove('active');
+      }
+    }
+
+    // Procesar envío de datos e interconectar con WhatsApp
+    function submitRSVP(e) {
+      e.preventDefault();
+      
+      const btn = document.getElementById('btnSubmitForm');
+      btn.disabled = true;
+      btn.innerText = "Guardando...";
+
+      const nombre = document.getElementById('guestName').value;
+      const asistentes = document.getElementById('guestCount').value;
+      const mensaje = document.getElementById('guestMessage').value;
+
+      const payload = {
+        nombre: nombre,
+        asistentes: asistentes,
+        mensaje: mensaje
+      };
+
+      // Guardar en Google Sheets en segundo plano sin bloquear la navegación
+      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("TU_SCRIPT_ID_AQUI")) {
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.log("Error guardando en sheet:", err));
+      }
+
+      // Preparar mensaje formateado de WhatsApp
+      let textWA = `Hola, confirmo mi asistencia al bautismo de María José.%0A%0A` +
+                   `👤 *Nombre/Familia:* ${encodeURIComponent(nombre)}%0A` +
+                   `👥 *Asistentes:* ${encodeURIComponent(asistentes)}`;
+      
+      if (mensaje.trim() !== "") {
+        textWA += `%0A💬 *Mensaje:* ${encodeURIComponent(mensaje)}`;
+      }
+
+      // Abrir WhatsApp con la respuesta prellenada
+      const waUrl = `https://wa.me/?text=${textWA}`;
+
+      setTimeout(() => {
+        btn.disabled = false;
+        btn.innerText = "CONFIRMAR Y ENVIAR WHATSAPP";
+        confirmModal.classList.remove('active');
+        window.open(waUrl, '_blank');
+      }, 400);
     }
 
     v0.addEventListener('timeupdate', function() {
