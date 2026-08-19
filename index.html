@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Bautismo - María José Díaz López</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <style>
+    @font-face {
+      font-family: 'Bettrisia Script';
+      src: url('Bettrisia Script Bold.ttf') format('truetype'),
+           url('Bettrisia Script Bold.otf') format('opentype');
+      font-weight: bold;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      --gold-deep: #7a520c;
+      --gold-gradient-bright: linear-gradient(135deg, #c59b27 0%, #f3e08b 25%, #e1b336 50%, #fbd868 75%, #a47b18 100%);
+      --bg-color: #000000;
+      --text-dark: #000000;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: var(--bg-color);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--text-dark);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Contenedor adaptativo */
+    .invitation-card {
+      width: 92%;
+      max-width: 420px;
+      height: 94dvh;
+      max-height: 850px;
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+      border: 1px solid rgba(184, 134, 11, 0.5);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px 15px;
+      text-align: center;
+    }
+
+    /* Pantalla inicial de inicio */
+    .start-screen {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #000000;
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: opacity 1.2s ease-in-out;
+      padding: 20px;
+      overflow: visible !important;
+    }
+
+    .start-screen.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .start-title {
+      font-family: 'Bettrisia Script', 'Pinyon Script', cursive;
+      font-size: 4rem;
+      line-height: 1.5;
+      padding: 25px 15px 10px 15px;
+      background: var(--gold-gradient-bright);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0px 2px 4px rgba(0,0,0,0.8)) drop-shadow(0px 0px 8px rgba(243, 224, 139, 0.3));
+      margin-bottom: 15px;
+      overflow: visible !important;
+      display: block;
+    }
+
+    .start-btn {
+      color: #f3e08b;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: bold;
+      border: 1px solid #e1b336;
+      padding: 10px 24px;
+      border-radius: 30px;
+      background: rgba(0, 0, 0, 0.65);
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 15px rgba(225, 179, 54, 0.3);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.85; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 0.85; }
+    }
+
+    /* Capas de Fondo */
+    .bg-wrapper {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .bg-media {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: opacity 1.8s ease-in-out;
+    }
+
+    #video1, #video2, #imgVestido {
+      opacity: 0;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.18) 100%);
+      z-index: 2;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 3;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .scene {
+      position: absolute;
+      width: 100%;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+      transform: translateY(8px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scene.active {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0);
+    }
+
+    .gold-solid-text {
+      color: var(--gold-deep);
+      font-weight: bold;
+      text-shadow: 0px 1px 1px rgba(255, 255, 255, 0.95), 0px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .title-name {
+      font-family: 'Bettrisia Script', 'Pinyon Script', cursive;
+      font-size: 3.3rem;
+      line-height: 1.35;
+      padding-bottom: 15px;
+      margin: 5px 0;
+      overflow: visible !important;
+    }
+
+    .smooth-char {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(3px);
+      transform: translateY(4px);
+      animation: appearChar 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    @keyframes appearChar {
+      to {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0);
+      }
+    }
+
+    .scripture {
+      font-style: italic;
+      font-size: 1.25rem;
+      color: #0d0d0d;
+      line-height: 1.45;
+      padding: 0 10px;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+      font-weight: 700;
+    }
+
+    .scripture-ref {
+      font-weight: 700;
+      font-style: normal;
+      font-size: 1.15rem;
+      margin-top: 12px;
+      letter-spacing: 2px;
+    }
+
+    .text-invitation {
+      font-size: 1.25rem;
+      color: #0d0d0d;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+      margin: 8px 0;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .dress-code-title {
+      font-family: 'Bettrisia Script', 'Pinyon Script', cursive;
+      font-size: 2.6rem;
+      line-height: 1.1;
+      margin-bottom: 2px;
+      overflow: visible !important;
+    }
+
+    .dress-code-sub {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.85);
+      margin-bottom: 10px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 90%;
+      margin: 5px auto;
+      padding: 10px 14px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      cursor: pointer;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #7a520c 0%, #b8860b 50%, #5c3d06 100%);
+      color: #ffffff;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      border: none;
+    }
+
+    .btn-outline {
+      background: rgba(255,255,255,0.92);
+      border: 2px solid #b8860b;
+      color: #5c3d06;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="invitation-card">
+    
+    <!-- Pantalla Inicial -->
+    <div class="start-screen" id="startScreen" onclick="initInvitation()">
+      <div class="start-title">Mi bautismo</div>
+      <div class="start-btn">Iniciar</div>
+    </div>
+
+    <!-- Archivos de Video e Imagen -->
+    <div class="bg-wrapper">
+      <video id="video0" class="bg-media" muted playsinline>
+        <source src="video_inicio.mp4" type="video/mp4">
+      </video>
+      <video id="video1" class="bg-media" loop muted playsinline>
+        <source src="video1.mp4" type="video/mp4">
+      </video>
+      <video id="video2" class="bg-media" loop muted playsinline>
+        <source src="video2.mp4" type="video/mp4">
+      </video>
+      <img id="imgVestido" src="vestido.jpeg" class="bg-media" alt="Vestido Bautismo">
+      <div class="overlay"></div>
+    </div>
+
+    <!-- Audio del Himno -->
+    <audio id="bgMusic" loop preload="auto">
+      <source src="himno.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="content-wrapper">
+      
+      <!-- ESCENA 0: Intro sin texto -->
+      <div id="scene0" class="scene active"></div>
+
+      <!-- ESCENA 1: Escritura -->
+      <div id="scene1" class="scene">
+        <div class="scripture">
+          Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.
+		  <br>
+		  En las manos te llevarán, para que tu pie no tropiece en piedra.
+          <div class="scripture-ref gold-solid-text">SALMO 91: 11-12</div>
+        </div>
+      </div>
+
+      <!-- ESCENA 2: Nombre de la Niña -->
+      <div id="scene2" class="scene">
+        <p class="text-invitation">Estas cordialmente invitado al bautismo de:</p>
+        
+        <h1 class="title-name gold-solid-text" id="handwritingContainer"></h1>
+
+        <p class="text-invitation">
+          El cual, se llevará a cabo el<br>
+          <strong class="gold-solid-text" style="font-size: 1.35rem;">Sábado 29 de Agosto a las 13:30 hrs</strong>
+        </p>
+      </div>
+
+      <!-- ESCENA 4: Resumen Final con Botón de Calendario -->
+      <div id="scene4" class="scene">
+        <div class="dress-code-title gold-solid-text">Dress Code:</div>
+        <div class="dress-code-sub">Blanco o colores claros.</div>
+
+        <a href="https://wa.me/525517839062?text=Hola,%20confirmo%20mi%20asistencia%20al%20bautismo%20de%20Majito" target="_blank" class="btn btn-outline">
+          📲 FAVOR DE CONFIRMAR TU ASISTENCIA AQUÍ
+        </a>
+
+        <!-- Botón para Agregar al Calendario -->
+        <a id="btnCalendar" onclick="addToCalendar()" class="btn btn-outline" style="border-color: #7a520c;">
+          📅 AGREGAR A MI CALENDARIO
+        </a>
+
+        <p class="text-invitation" style="margin: 4px 0; color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.85); font-size: 1.15rem;">
+          <strong>Lugar del evento:</strong><br>
+          La Iglesia de Jesucristo de los Santos de los Últimos Días
+        </p>
+
+        <a href="https://maps.app.goo.gl/jRLju4VTfpkrJHfr8" target="_blank" class="btn btn-gold">
+          📍 VER UBICACIÓN EN GOOGLE MAPS
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const startScreen = document.getElementById('startScreen');
+    const v0 = document.getElementById('video0');
+    const v1 = document.getElementById('video1');
+    const v2 = document.getElementById('video2');
+    const imgVestido = document.getElementById('imgVestido');
+    const audio = document.getElementById('bgMusic');
+
+    const s0 = document.getElementById('scene0');
+    const s1 = document.getElementById('scene1');
+    const s2 = document.getElementById('scene2');
+    const s4 = document.getElementById('scene4');
+
+    let isStarted = false;
+    let crossfadeDone = false;
+
+    function initInvitation() {
+      if (isStarted) return;
+      isStarted = true;
+
+      audio.play().catch(() => {});
+      startScreen.classList.add('hidden');
+      v0.play();
+    }
+
+    function triggerHandwriting() {
+      const container = document.getElementById('handwritingContainer');
+      const lines = ["María José", "Díaz López"];
+      container.innerHTML = ''; 
+
+      let totalDelay = 0;
+
+      lines.forEach((lineText) => {
+        const lineDiv = document.createElement('div');
+        lineDiv.style.whiteSpace = 'nowrap';
+
+        for (let char of lineText) {
+          const charSpan = document.createElement('span');
+          if (char === ' ') {
+            charSpan.innerHTML = '&nbsp;';
+            charSpan.style.display = 'inline-block';
+          } else {
+            charSpan.textContent = char;
+            charSpan.className = 'smooth-char';
+            charSpan.style.animationDelay = `${totalDelay}s`;
+            totalDelay += 0.26;
+          }
+          lineDiv.appendChild(charSpan);
+        }
+
+        container.appendChild(lineDiv);
+        totalDelay += 0.35;
+      });
+    }
+
+    // Función inteligente para añadir al calendario
+    function addToCalendar() {
+      const title = encodeURIComponent("Bautismo de María José Díaz López");
+      const details = encodeURIComponent("Bautismo de María José. Dress code: Blanco o colores claros.");
+      const location = encodeURIComponent(https://maps.app.goo.gl/jRLju4VTfpkrJHfr8);
+      
+      // Fecha en formato UTC: 29 de Agosto de 2026 de 13:30 a 16:00 CST (19:30 a 22:00 UTC)
+      const startGCal = "20260829T193000Z";
+      const endGCal = "20260829T220000Z";
+
+      // Detecta si es un iPhone/iPad para abrir evento directo o Google Calendar
+      const isiOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+
+      if (isiOS) {
+        // Genera un archivo .ics para Apple Calendar
+        const icsData = 
+`BEGIN:VCALENDAR
+VERSION:2.0
+BEGIN:VEVENT
+SUMMARY:Bautismo de María José Díaz López
+DESCRIPTION:Dress code: Blanco o colores claros.
+LOCATION:https://maps.app.goo.gl/jRLju4VTfpkrJHfr8
+DTSTART:20260829T193000Z
+DTEND:20260829T220000Z
+END:VEVENT
+END:VCALENDAR`;
+
+        const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8;' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'bautismo-maria-jose.ics';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      } else {
+        // Google Calendar para Android y Desktop
+        const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startGCal}/${endGCal}&details=${details}&location=${location}`;
+        window.open(gcalUrl, '_blank');
+      }
+    }
+
+    // Crossfade en t=4.75s para transiciones fluidas
+    v0.addEventListener('timeupdate', function() {
+      if (v0.currentTime >= 4.75 && !crossfadeDone) {
+        crossfadeDone = true;
+        
+        v1.play();
+        v0.style.opacity = '0';
+        v1.style.opacity = '1';
+
+        s0.classList.remove('active');
+        s1.classList.add('active');
+
+        setTimeout(() => {
+          v1.style.opacity = '0';
+          v2.style.opacity = '1';
+          v2.play();
+
+          s1.classList.remove('active');
+          s2.classList.add('active');
+
+          triggerHandwriting();
+
+          setTimeout(() => {
+            v2.style.opacity = '0';
+            imgVestido.style.opacity = '1';
+
+            s2.classList.remove('active');
+            s4.classList.add('active');
+          }, 14000);
+
+        }, 10000);
+      }
+    });
+  </script>
+
+</body>
+</html>
