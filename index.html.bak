@@ -849,14 +849,14 @@
         mensaje: mensaje
       };
 
-      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("AKfycbw9cdqn9OhugZsO8Dzz-lXButJTg0ZTFRAXv6MTFKE4t28xVqWk4V3a1l-8WPcPdF2t")) {
-        fetch(GOOGLE_SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        }).catch(err => console.log("Error guardando en sheet:", err));
-      }
+      if (GOOGLE_SCRIPT_URL) {
+		fetch(GOOGLE_SCRIPT_URL, {
+		  method: 'POST',
+		  mode: 'no-cors',
+		  headers: { 'Content-Type': 'application/json' },
+		  body: JSON.stringify(payload)
+		}).catch(err => console.log("Error guardando en sheet:", err));
+	  }
 
       let textWA = `Hola, confirmo mi asistencia al bautismo de Majito.%0A%0A` +
                    `*Nombre/Familia:* ${encodeURIComponent(nombre)}%0A` +
