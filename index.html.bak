@@ -859,11 +859,11 @@
       }
 
       let textWA = `Hola, confirmo mi asistencia al bautismo de Majito.%0A%0A` +
-                   `👤 *Nombre/Familia:* ${encodeURIComponent(nombre)}%0A` +
-                   `👥 *Asistentes:* ${encodeURIComponent(asistentes)}`;
+                   `*Nombre/Familia:* ${encodeURIComponent(nombre)}%0A` +
+                   `*Asistentes:* ${encodeURIComponent(asistentes)}`;
       
       if (mensaje.trim() !== "") {
-        textWA += `%0A💬 *Mensaje:* ${encodeURIComponent(mensaje)}`;
+        textWA += `*Mensaje:* ${encodeURIComponent(mensaje)}`;
       }
 
       const waUrl = `https://wa.me/525517839062?text=${textWA}`;
