@@ -155,7 +155,7 @@
       transition: opacity 1.8s ease-in-out;
     }
 
-    #imgManos, #video2, #imgFondoResumen, #imgVestido {
+    #video1, #imgFondoResumen, #imgVestido {
       opacity: 0;
     }
 
@@ -199,19 +199,6 @@
       transform: translateY(0);
     }
 
-    /* Tarjeta Traslúcida */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      border: 1px solid rgba(212, 175, 55, 0.5);
-      border-radius: 18px;
-      padding: 22px 16px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
-      width: 92%;
-      margin: 0 auto;
-    }
-
     /* Definición del Texto Dorado */
     .gold-shine-text {
       color: #b8860b;
@@ -252,24 +239,29 @@
       font-weight: 700;
     }
 
-    .scripture {
+    /* Texto Salmo Flotante Directo Sobre Video */
+    .scripture-floating {
       font-style: italic;
-      font-size: 1.25rem;
+      font-size: 1.35rem;
       color: #2e1e04;
-      line-height: 1.45;
-      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 1px 2px rgba(0, 0, 0, 0.3);
+      line-height: 1.5;
+      text-shadow: 
+        0 2px 4px rgba(255, 255, 255, 0.95),
+        0 -1px 3px rgba(255, 255, 255, 0.95),
+        0 2px 6px rgba(0, 0, 0, 0.25);
       font-weight: 700;
+      padding: 0 15px;
     }
 
     .scripture-ref {
       font-weight: 800;
       font-style: normal;
-      font-size: 1.2rem;
-      margin-top: 12px;
+      font-size: 1.25rem;
+      margin-top: 14px;
       letter-spacing: 2px;
     }
 
-    /* ESTILOS EDITORIALES ESCENA 4 */
+    /* ESTILOS EDITORIALES */
     .card-editorial {
       padding: 20px 15px;
       width: 100%;
@@ -586,9 +578,8 @@
       <video id="videoInicio" class="bg-media" muted playsinline>
         <source src="video_inicio.mp4" type="video/mp4">
       </video>
-      <img id="imgManos" src="manos.jpeg" class="bg-media" alt="Manos">
-      <video id="video2" class="bg-media" loop muted playsinline>
-        <source src="video2.mp4" type="video/mp4">
+      <video id="video1" class="bg-media" loop muted playsinline>
+        <source src="video1.mp4" type="video/mp4">
       </video>
       <img id="imgFondoResumen" src="fondo_resumen.jpg" class="bg-media" alt="Fondo Resumen">
       <img id="imgVestido" src="vestido.jpeg" class="bg-media" alt="Vestido Bautismo">
@@ -604,37 +595,16 @@
       <!-- ESCENA 1: Solo Video de Inicio (Sin Texto) -->
       <div id="scene1" class="scene active"></div>
 
-      <!-- ESCENA 2: Salmo 91 (Fondo: manos.jpeg) -->
+      <!-- ESCENA 2: Salmo 91 Flotante Directo (Fondo: video1.mp4) -->
       <div id="scene2" class="scene">
-        <div class="glass-card">
-          <div class="scripture">
-            Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
-            <div class="scripture-ref gold-shine-text">SALMO 91: 11-12</div>
-          </div>
+        <div class="scripture-floating">
+          Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
+          <div class="scripture-ref gold-shine-text">SALMO 91: 11-12</div>
         </div>
       </div>
 
-      <!-- ESCENA 3: Frase Amigo Fiel + Cita + SON MI TESORO (Fondo: video2.mp4) -->
+      <!-- ESCENA 3: Resumen Editorial con Escritura Manual (Fondo: fondo_resumen.jpg) -->
       <div id="scene3" class="scene">
-        <div style="width: 100%; padding: 0 15px;">
-          <div class="gold-shine-text" style="font-size: 1.45rem; line-height: 1.5; text-align: center;">
-            Un amigo fiel es un refugio seguro, quien lo encuentra ha encontrado un tesoro.
-          </div>
-          
-          <div class="gold-shine-text" style="font-size: 1.15rem; font-weight: 800; text-align: right; margin-top: 8px; letter-spacing: 1px;">
-            ECLES. 6:1
-          </div>
-
-          <br><br>
-
-          <div class="gold-shine-text" style="font-size: 1.8rem; font-weight: 800; text-align: center; letter-spacing: 3px;">
-            SON MI TESORO
-          </div>
-        </div>
-      </div>
-
-      <!-- ESCENA 4: Resumen Editorial con Escritura Manual Lenta (Fondo: fondo_resumen.jpg) -->
-      <div id="scene4" class="scene">
         <div class="card-editorial">
           <div class="editorial-tag">Mi Bautismo</div>
           <div class="editorial-divider"></div>
@@ -656,8 +626,8 @@
         </div>
       </div>
 
-      <!-- ESCENA 5: Dress Code, Confirmación y Ubicación (Fondo: vestido.jpeg) -->
-      <div id="scene5" class="scene">
+      <!-- ESCENA 4: Dress Code, Confirmación y Ubicación (Fondo: vestido.jpeg) -->
+      <div id="scene4" class="scene">
         <div class="dress-code-title gold-shine-text">Dress Code:</div>
         <div class="dress-code-sub">Blanco o colores claros.</div>
 
@@ -743,8 +713,7 @@
 
     const startScreen = document.getElementById('startScreen');
     const vInicio = document.getElementById('videoInicio');
-    const imgManos = document.getElementById('imgManos');
-    const v2 = document.getElementById('video2');
+    const v1 = document.getElementById('video1');
     const imgFondoResumen = document.getElementById('imgFondoResumen');
     const imgVestido = document.getElementById('imgVestido');
     const audio = document.getElementById('bgMusic');
@@ -753,7 +722,6 @@
     const s2 = document.getElementById('scene2');
     const s3 = document.getElementById('scene3');
     const s4 = document.getElementById('scene4');
-    const s5 = document.getElementById('scene5');
 
     const colorModal = document.getElementById('colorModal');
     const confirmModal = document.getElementById('confirmModal');
@@ -787,7 +755,7 @@
     window.addEventListener('touchstart', unlockAndPlayAudio, { once: true });
     window.addEventListener('click', unlockAndPlayAudio, { once: true });
 
-    // Animación de Escritura Manual Pausada
+    // Animación de Escritura Manual
     function triggerHandwriting() {
       const container = document.getElementById('handwritingContainer');
       const lines = ["María José", "Díaz López"];
@@ -808,13 +776,13 @@
             charSpan.textContent = char;
             charSpan.className = 'smooth-char';
             charSpan.style.animationDelay = `${totalDelay}s`;
-            totalDelay += 0.45; // Animación más pausada letra por letra
+            totalDelay += 0.45;
           }
           lineDiv.appendChild(charSpan);
         }
 
         container.appendChild(lineDiv);
-        totalDelay += 0.80; // Pausa más larga entre líneas
+        totalDelay += 0.80;
       });
     }
 
@@ -850,20 +818,20 @@
       };
 
       if (GOOGLE_SCRIPT_URL) {
-		fetch(GOOGLE_SCRIPT_URL, {
-		  method: 'POST',
-		  mode: 'no-cors',
-		  headers: { 'Content-Type': 'application/json' },
-		  body: JSON.stringify(payload)
-		}).catch(err => console.log("Error guardando en sheet:", err));
-	  }
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        }).catch(err => console.log("Error guardando en sheet:", err));
+      }
 
       let textWA = `Hola, confirmo mi asistencia al bautismo de Majito.%0A%0A` +
-                   `*Nombre/Familia:* ${encodeURIComponent(nombre)}%0A` +
-                   `*Asistentes:* ${encodeURIComponent(asistentes)}`;
+                   `👤 *Nombre/Familia:* ${encodeURIComponent(nombre)}%0A` +
+                   `👥 *Asistentes:* ${encodeURIComponent(asistentes)}`;
       
       if (mensaje.trim() !== "") {
-        textWA += `*Mensaje:* ${encodeURIComponent(mensaje)}`;
+        textWA += `%0A💬 *Mensaje:* ${encodeURIComponent(mensaje)}`;
       }
 
       const waUrl = `https://wa.me/525517839062?text=${textWA}`;
@@ -882,36 +850,27 @@
 
         setTimeout(() => {
           vInicio.style.opacity = '0';
-          imgManos.style.opacity = '1';
+          v1.style.opacity = '1';
+          v1.play().catch(() => {});
 
           s1.classList.remove('active');
           s2.classList.add('active');
 
           setTimeout(() => {
-            imgManos.style.opacity = '0';
-            v2.style.opacity = '1';
-            v2.play().catch(() => {});
+            v1.style.opacity = '0';
+            imgFondoResumen.style.opacity = '1';
 
             s2.classList.remove('active');
             s3.classList.add('active');
+            triggerHandwriting();
 
             setTimeout(() => {
-              v2.style.opacity = '0';
-              imgFondoResumen.style.opacity = '1';
+              imgFondoResumen.style.opacity = '0';
+              imgVestido.style.opacity = '1';
 
               s3.classList.remove('active');
               s4.classList.add('active');
-              triggerHandwriting();
-
-              setTimeout(() => {
-                imgFondoResumen.style.opacity = '0';
-                imgVestido.style.opacity = '1';
-
-                s4.classList.remove('active');
-                s5.classList.add('active');
-              }, 10000);
-
-            }, 8000);
+            }, 10000);
 
           }, 8000);
 

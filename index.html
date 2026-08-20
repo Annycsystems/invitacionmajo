@@ -864,13 +864,14 @@
             s3.classList.add('active');
             triggerHandwriting();
 
+            // Tiempo extendido: ~10.5s de escritura + 5s adicionales de lectura = 15.5s
             setTimeout(() => {
               imgFondoResumen.style.opacity = '0';
               imgVestido.style.opacity = '1';
 
               s3.classList.remove('active');
               s4.classList.add('active');
-            }, 10000);
+            }, 15500);
 
           }, 8000);
 
