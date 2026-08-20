@@ -6,7 +6,7 @@
   <title>Bautismo - María José Díaz López</title>
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mi Bautismo - María José Díaz López " />
+  <meta property="og:title" content="Mi Bautismo - María José Díaz López" />
   <meta property="og:description" content="Acompáñanos a celebrar el bautismo de María José. Sábado 29 de Agosto a las 13:30 hrs." />
   <meta property="og:image" content="https://mi-bautismo-maria-jose.vercel.app/Portada.png" />
   <meta property="og:image:width" content="800" />
@@ -165,7 +165,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%);
+      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
       z-index: 2;
     }
 
@@ -190,6 +190,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      padding: 0 10px;
     }
 
     .scene.active {
@@ -198,11 +199,24 @@
       transform: translateY(0);
     }
 
+    /* Tarjeta Traslúcida para Contraste */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.45);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: 1px solid rgba(184, 134, 11, 0.35);
+      border-radius: 18px;
+      padding: 22px 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+      width: 92%;
+      margin: 0 auto;
+    }
+
     /* Estilos Tipográficos */
     .gold-shine-text {
       color: var(--gold-bright-solid);
       font-weight: bold;
-      text-shadow: 0px 1px 2px rgba(92, 61, 6, 0.4), 0px 1px 1px rgba(255, 255, 255, 0.9);
+      text-shadow: 0px 1px 2px rgba(92, 61, 6, 0.5), 0px 1px 1px rgba(255, 255, 255, 0.9);
     }
 
     .text-invitation {
@@ -217,10 +231,9 @@
     .scripture {
       font-style: italic;
       font-size: 1.25rem;
-      color: var(--text-elegant);
+      color: #3b2806;
       line-height: 1.45;
-      padding: 0 10px;
-      text-shadow: 0 1px 3px rgba(255,255,255,0.9);
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
       font-weight: 700;
     }
 
@@ -556,11 +569,13 @@
       <!-- ESCENA 1: Solo Video de Inicio (Sin Texto) -->
       <div id="scene1" class="scene active"></div>
 
-      <!-- ESCENA 2: Salmo 91 (Fondo: manos.jpeg) -->
+      <!-- ESCENA 2: Salmo 91 con Rectángulo Traslúcido (Fondo: manos.jpeg) -->
       <div id="scene2" class="scene">
-        <div class="scripture">
-          Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
-          <div class="scripture-ref gold-shine-text">SALMO 91: 11-12</div>
+        <div class="glass-card">
+          <div class="scripture">
+            Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
+            <div class="scripture-ref gold-shine-text">SALMO 91: 11-12</div>
+          </div>
         </div>
       </div>
 
@@ -784,14 +799,11 @@
       }, 400);
     }
 
-    // Lógica Secuencial Precisa
     vInicio.addEventListener('timeupdate', function() {
       if (vInicio.currentTime >= 1.0 && !sequenceStarted) {
         sequenceStarted = true;
 
-        // Escena 1 dura los primeros 5 segundos mostrando solo video_inicio.mp4
         setTimeout(() => {
-          // Transición a Escena 2 (Fondo: manos.jpeg + Texto Salmo 91)
           vInicio.style.opacity = '0';
           imgManos.style.opacity = '1';
 
@@ -799,7 +811,6 @@
           s2.classList.add('active');
 
           setTimeout(() => {
-            // Transición a Escena 3 (Fondo: video2.mp4 + Texto Amigo Fiel)
             imgManos.style.opacity = '0';
             v2.style.opacity = '1';
             v2.play().catch(() => {});
@@ -808,7 +819,6 @@
             s3.classList.add('active');
 
             setTimeout(() => {
-              // Transición a Escena 4 (Fondo: fondo_resumen.jpg + Tarjeta Editorial)
               v2.style.opacity = '0';
               imgFondoResumen.style.opacity = '1';
 
@@ -816,19 +826,18 @@
               s4.classList.add('active');
 
               setTimeout(() => {
-                // Transición a Escena 5 Final (Fondo: vestido.jpeg + Dress code, RSVP y Maps)
                 imgFondoResumen.style.opacity = '0';
                 imgVestido.style.opacity = '1';
 
                 s4.classList.remove('active');
                 s5.classList.add('active');
-              }, 10000); // 10 segundos para Escena 4
+              }, 10000);
 
-            }, 8000); // 8 segundos para Escena 3
+            }, 8000);
 
-          }, 8000); // 8 segundos para Escena 2
+          }, 8000);
 
-        }, 4000); // 4 segundos para Escena 1 de video inicial
+        }, 4000);
       }
     });
   </script>
