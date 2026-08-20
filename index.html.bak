@@ -576,7 +576,7 @@
 
   <script>
     // URL del Webhook de Apps Script
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/TU_SCRIPT_ID_AQUI/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw9cdqn9OhugZsO8Dzz-lXButJTg0ZTFRAXv6MTFKE4t28xVqWk4V3a1l-8WPcPdF2t/exec";
 
     const startScreen = document.getElementById('startScreen');
     const v0 = document.getElementById('video0');
@@ -699,7 +699,7 @@
       }
 
       // Abrir WhatsApp con la respuesta prellenada
-      const waUrl = `https://wa.me/?text=${textWA}`;
+      const waUrl = `https://wa.me/525517839062?text=${textWA}`;
 
       setTimeout(() => {
         btn.disabled = false;
