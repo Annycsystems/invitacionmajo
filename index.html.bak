@@ -6,7 +6,7 @@
   <title>Bautismo - María José Díaz López</title>
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mi Bautismo - María José Díaz López" />
+  <meta property="og:title" content="Mi Bautismo - María José Díaz López️" />
   <meta property="og:description" content="Acompáñanos a celebrar el bautismo de María José. Sábado 29 de Agosto a las 13:30 hrs." />
   <meta property="og:image" content="https://mi-bautismo-maria-jose.vercel.app/Portada.png" />
   <meta property="og:image:width" content="800" />
@@ -29,7 +29,7 @@
 
     :root {
       --gold-solid: #b8860b;
-      --gold-intense: #d4af37; /* Dorado metálico más vivo */
+      --gold-intense: #d4af37;
       --text-elegant: #4a3308;
       --bg-color: #ffffff;
     }
@@ -199,24 +199,29 @@
       transform: translateY(0);
     }
 
-    /* Tarjeta Traslúcida para Contraste */
+    /* Tarjeta Traslúcida Más Ligera (Muestra más la imagen) */
     .glass-card {
-      background: rgba(255, 255, 255, 0.55);
-      backdrop-filter: blur(5px);
-      -webkit-backdrop-filter: blur(5px);
-      border: 1px solid rgba(212, 175, 55, 0.45);
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(2px);
+      -webkit-backdrop-filter: blur(2px);
+      border: 1px solid rgba(212, 175, 55, 0.5);
       border-radius: 18px;
       padding: 22px 16px;
-      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
       width: 92%;
       margin: 0 auto;
     }
 
-    /* Estilos Tipográficos con Dorado Intenso Sólido */
+    /* Definición Mejorada del Texto Dorado */
     .gold-shine-text {
-      color: var(--gold-intense);
-      font-weight: bold;
-      text-shadow: 0px 1px 2px rgba(92, 61, 6, 0.6), 0px 1px 1px rgba(255, 255, 255, 0.9);
+      color: #b8860b;
+      font-weight: 800;
+      text-shadow: 
+        0px 1px 2px rgba(255, 255, 255, 0.9),
+        0px -1px 2px rgba(255, 255, 255, 0.9),
+        1px 0px 2px rgba(255, 255, 255, 0.9),
+        -1px 0px 2px rgba(255, 255, 255, 0.9),
+        0px 2px 4px rgba(74, 51, 8, 0.6);
     }
 
     .text-invitation {
@@ -231,16 +236,16 @@
     .scripture {
       font-style: italic;
       font-size: 1.25rem;
-      color: #3b2806;
+      color: #2e1e04;
       line-height: 1.45;
-      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8);
+      text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 1px 2px rgba(0, 0, 0, 0.3);
       font-weight: 700;
     }
 
     .scripture-ref {
-      font-weight: 700;
+      font-weight: 800;
       font-style: normal;
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       margin-top: 12px;
       letter-spacing: 2px;
     }
@@ -570,7 +575,7 @@
       <!-- ESCENA 1: Solo Video de Inicio (Sin Texto) -->
       <div id="scene1" class="scene active"></div>
 
-      <!-- ESCENA 2: Salmo 91 con Rectángulo Traslúcido (Fondo: manos.jpeg) -->
+      <!-- ESCENA 2: Salmo 91 (Fondo: manos.jpeg) -->
       <div id="scene2" class="scene">
         <div class="glass-card">
           <div class="scripture">

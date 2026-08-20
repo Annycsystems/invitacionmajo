@@ -6,7 +6,7 @@
   <title>Bautismo - María José Díaz López</title>
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mi Bautismo - María José Díaz López️" />
+  <meta property="og:title" content="Mi Bautismo - María José Díaz López" />
   <meta property="og:description" content="Acompáñanos a celebrar el bautismo de María José. Sábado 29 de Agosto a las 13:30 hrs." />
   <meta property="og:image" content="https://mi-bautismo-maria-jose.vercel.app/Portada.png" />
   <meta property="og:image:width" content="800" />
@@ -199,7 +199,7 @@
       transform: translateY(0);
     }
 
-    /* Tarjeta Traslúcida Más Ligera (Muestra más la imagen) */
+    /* Tarjeta Traslúcida */
     .glass-card {
       background: rgba(255, 255, 255, 0.25);
       backdrop-filter: blur(2px);
@@ -212,7 +212,7 @@
       margin: 0 auto;
     }
 
-    /* Definición Mejorada del Texto Dorado */
+    /* Definición del Texto Dorado */
     .gold-shine-text {
       color: #b8860b;
       font-weight: 800;
@@ -222,6 +222,25 @@
         1px 0px 2px rgba(255, 255, 255, 0.9),
         -1px 0px 2px rgba(255, 255, 255, 0.9),
         0px 2px 4px rgba(74, 51, 8, 0.6);
+    }
+
+    /* Efecto de Escritura Suave Manual */
+    .smooth-char {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(3px);
+      transform: translateY(4px);
+      animation: appearChar 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      color: var(--gold-intense);
+      text-shadow: 0px 1px 3px rgba(92, 61, 6, 0.5), 0px 1px 1px rgba(255, 255, 255, 0.9);
+    }
+
+    @keyframes appearChar {
+      to {
+        opacity: 1;
+        filter: blur(0px);
+        transform: translateY(0);
+      }
     }
 
     .text-invitation {
@@ -278,8 +297,6 @@
     .editorial-name {
       font-family: 'Bettrisia Script', cursive;
       font-size: 3.4rem;
-      color: var(--gold-intense);
-      text-shadow: 0px 1px 3px rgba(92, 61, 6, 0.5), 0px 1px 1px rgba(255, 255, 255, 0.9);
       line-height: 1.2;
       margin: 5px 0 12px 0;
       padding-top: 10px;
@@ -308,10 +325,9 @@
       align-items: center;
       justify-content: center;
       gap: 15px;
-      margin: 12px 0;
-      padding: 8px 0;
+      margin: 12px 0 6px 0;
+      padding-top: 10px;
       border-top: 1px solid rgba(212, 175, 55, 0.5);
-      border-bottom: 1px solid rgba(212, 175, 55, 0.5);
       width: 90%;
     }
 
@@ -329,9 +345,9 @@
       color: var(--gold-intense);
       text-shadow: 0px 1px 2px rgba(92, 61, 6, 0.4);
       line-height: 1;
+      padding: 0 15px;
       border-left: 1px solid #d4af37;
       border-right: 1px solid #d4af37;
-      padding: 0 15px;
     }
 
     .date-year-text {
@@ -339,6 +355,19 @@
       letter-spacing: 2px;
       font-weight: 700;
       color: #7a520c;
+      text-transform: uppercase;
+    }
+
+    .editorial-time-centered {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #7a520c;
+      letter-spacing: 2px;
+      margin-top: 4px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.5);
+      width: 90%;
+      text-align: center;
     }
 
     .dress-code-title {
@@ -585,32 +614,43 @@
         </div>
       </div>
 
-      <!-- ESCENA 3: Frase Amigo Fiel (Fondo: video2.mp4) -->
+      <!-- ESCENA 3: Frase Amigo Fiel + Cita + SON MI TESORO (Fondo: video2.mp4) -->
       <div id="scene3" class="scene">
-        <div class="scripture gold-shine-text" style="font-size: 1.5rem; line-height: 1.5; padding: 0 15px;">
-          Un amigo fiel es un refugio seguro, quien lo encuentra ha encontrado un tesoro.
+        <div style="width: 100%; padding: 0 15px;">
+          <div class="scripture gold-shine-text" style="font-size: 1.45rem; line-height: 1.5; text-align: center;">
+            Un amigo fiel es un refugio seguro, quien lo encuentra ha encontrado un tesoro.
+          </div>
+          
+          <div class="gold-shine-text" style="font-size: 1.15rem; font-weight: 800; text-align: right; margin-top: 8px; letter-spacing: 1px;">
+            ECLES. 6:1
+          </div>
+
+          <br><br>
+
+          <div class="gold-shine-text" style="font-size: 1.8rem; font-weight: 800; text-align: center; letter-spacing: 3px;">
+            SON MI TESORO
+          </div>
         </div>
       </div>
 
-      <!-- ESCENA 4: Resumen Editorial (Fondo: fondo_resumen.jpg) -->
+      <!-- ESCENA 4: Resumen Editorial con Escritura Manual (Fondo: fondo_resumen.jpg) -->
       <div id="scene4" class="scene">
         <div class="card-editorial">
           <div class="editorial-tag">Mi Bautismo</div>
           <div class="editorial-divider"></div>
           
-          <h2 class="editorial-name">María José<br>Díaz López</h2>
+          <h2 class="editorial-name" id="handwritingContainer"></h2>
           
           <div class="editorial-location-title">Lugar del Evento:</div>
           <div class="editorial-location-desc">La Iglesia de Jesucristo de los Santos de los Últimos Días</div>
 
           <div class="editorial-date-box">
-            <span class="date-day-text">Sábado</span>
+            <span class="date-day-text">SÁBADO</span>
             <span class="date-number">29</span>
-            <div style="display: flex; flex-direction: column; text-align: left;">
-              <span class="date-year-text">AGOSTO</span>
-              <span style="font-size: 0.8rem; font-weight: bold; color: #7a520c;">13:30 HRS</span>
-            </div>
+            <span class="date-year-text">AGOSTO</span>
           </div>
+          
+          <div class="editorial-time-centered">13:30 HRS</div>
 
           <div class="editorial-divider" style="margin-top: 15px;"></div>
         </div>
@@ -747,6 +787,37 @@
     window.addEventListener('touchstart', unlockAndPlayAudio, { once: true });
     window.addEventListener('click', unlockAndPlayAudio, { once: true });
 
+    // Animación de Escritura Manual para el Nombre en Escena 4
+    function triggerHandwriting() {
+      const container = document.getElementById('handwritingContainer');
+      const lines = ["María José", "Díaz López"];
+      container.innerHTML = ''; 
+
+      let totalDelay = 0;
+
+      lines.forEach((lineText) => {
+        const lineDiv = document.createElement('div');
+        lineDiv.style.whiteSpace = 'nowrap';
+
+        for (let char of lineText) {
+          const charSpan = document.createElement('span');
+          if (char === ' ') {
+            charSpan.innerHTML = '&nbsp;';
+            charSpan.style.display = 'inline-block';
+          } else {
+            charSpan.textContent = char;
+            charSpan.className = 'smooth-char';
+            charSpan.style.animationDelay = `${totalDelay}s`;
+            totalDelay += 0.24;
+          }
+          lineDiv.appendChild(charSpan);
+        }
+
+        container.appendChild(lineDiv);
+        totalDelay += 0.35;
+      });
+    }
+
     function openColorModal() { colorModal.classList.add('active'); }
     function closeColorModal(e) {
       if (!e || e.target === colorModal || e.target.classList.contains('modal-close-btn')) {
@@ -830,6 +901,7 @@
 
               s3.classList.remove('active');
               s4.classList.add('active');
+              triggerHandwriting(); // Iniciar animación de escritura en Escena 4
 
               setTimeout(() => {
                 imgFondoResumen.style.opacity = '0';
