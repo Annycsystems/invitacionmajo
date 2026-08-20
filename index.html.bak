@@ -609,7 +609,7 @@
         <div class="glass-card">
           <div class="scripture gold-shine-text">
             Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
-            <div class="scripture-ref gold-shine-text">SALMO 91: 11-12</div>
+            <div class="scripture-ref">SALMO 91: 11-12</div>
           </div>
         </div>
       </div>
@@ -617,7 +617,7 @@
       <!-- ESCENA 3: Frase Amigo Fiel + Cita + SON MI TESORO (Fondo: video2.mp4) -->
       <div id="scene3" class="scene">
         <div style="width: 100%; padding: 0 15px;">
-          <div class="scripture gold-shine-text" style="font-size: 1.45rem; line-height: 1.5; text-align: center;">
+          <div class="gold-shine-text" style="font-size: 1.45rem; line-height: 1.5; text-align: center;">
             Un amigo fiel es un refugio seguro, quien lo encuentra ha encontrado un tesoro.
           </div>
           
