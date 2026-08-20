@@ -14,7 +14,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
   <style>
@@ -76,6 +76,7 @@
       background-color: var(--bg-color);
     }
 
+    /* ESCENA 0: Inicio */
     .start-screen {
       position: absolute;
       top: 0;
@@ -132,6 +133,7 @@
       100% { transform: scale(1); opacity: 0.9; }
     }
 
+    /* Capas de Fondo */
     .bg-wrapper {
       position: absolute;
       top: 0;
@@ -153,7 +155,7 @@
       transition: opacity 1.8s ease-in-out;
     }
 
-    #video1, #video2, #imgVestido {
+    #imgManos, #video2, #imgFondoResumen, #imgVestido {
       opacity: 0;
     }
 
@@ -163,7 +165,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.05) 100%);
+      background: radial-gradient(circle, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 100%);
       z-index: 2;
     }
 
@@ -196,7 +198,7 @@
       transform: translateY(0);
     }
 
-    /* Texto Dorado Metálico Sólido */
+    /* Estilos Tipográficos */
     .gold-shine-text {
       color: var(--gold-bright-solid);
       font-weight: bold;
@@ -256,6 +258,96 @@
       font-size: 1.15rem;
       margin-top: 12px;
       letter-spacing: 2px;
+    }
+
+    /* ESTILOS EDITORIALES ESCENA 4 (Resumen) */
+    .card-editorial {
+      padding: 20px 15px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .editorial-tag {
+      font-size: 0.82rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #7a520c;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .editorial-divider {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #b8860b, transparent);
+      margin: 8px 0 15px 0;
+    }
+
+    .editorial-name {
+      font-family: 'Bettrisia Script', cursive;
+      font-size: 3.2rem;
+      color: #b8860b;
+      text-shadow: 0px 1px 2px rgba(122, 82, 12, 0.3);
+      line-height: 1.2;
+      margin: 5px 0 12px 0;
+      padding-top: 10px;
+      overflow: visible !important;
+    }
+
+    .editorial-location-title {
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #5c3d06;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .editorial-location-desc {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #4a3308;
+      margin-bottom: 15px;
+      line-height: 1.3;
+    }
+
+    .editorial-date-box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 12px 0;
+      padding: 8px 0;
+      border-top: 1px solid rgba(184, 134, 11, 0.4);
+      border-bottom: 1px solid rgba(184, 134, 11, 0.4);
+      width: 90%;
+    }
+
+    .date-day-text {
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #7a520c;
+    }
+
+    .date-number {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #b8860b;
+      line-height: 1;
+      border-left: 1px solid #b8860b;
+      border-right: 1px solid #b8860b;
+      padding: 0 15px;
+    }
+
+    .date-year-text {
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      font-weight: 700;
+      color: #7a520c;
     }
 
     .dress-code-title {
@@ -320,6 +412,7 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
+    /* Modales */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -462,21 +555,22 @@
 
   <div class="invitation-card">
     
+    <!-- ESCENA 0: Inicio -->
     <div class="start-screen" id="startScreen">
       <div class="start-title">Mi bautismo</div>
       <div class="start-btn">Iniciar</div>
     </div>
 
+    <!-- Archivos de Fondo -->
     <div class="bg-wrapper">
-      <video id="video0" class="bg-media" muted playsinline>
+      <video id="videoInicio" class="bg-media" muted playsinline>
         <source src="video_inicio.mp4" type="video/mp4">
       </video>
-      <video id="video1" class="bg-media" loop muted playsinline>
-        <source src="video1.mp4" type="video/mp4">
-      </video>
+      <img id="imgManos" src="manos.jpeg" class="bg-media" alt="Manos">
       <video id="video2" class="bg-media" loop muted playsinline>
         <source src="video2.mp4" type="video/mp4">
       </video>
+      <img id="imgFondoResumen" src="fondo_resumen.jpg" class="bg-media" alt="Fondo Resumen">
       <img id="imgVestido" src="vestido.jpeg" class="bg-media" alt="Vestido Bautismo">
       <div class="overlay"></div>
     </div>
@@ -487,8 +581,10 @@
 
     <div class="content-wrapper">
       
+      <!-- ESCENA 0: Intro sin texto -->
       <div id="scene0" class="scene active"></div>
 
+      <!-- ESCENA 1: Escritura -->
       <div id="scene1" class="scene">
         <div class="scripture">
           Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
@@ -496,18 +592,49 @@
         </div>
       </div>
 
+      <!-- ESCENA 2: Nombre de la Niña (Fondo: manos.jpeg) -->
       <div id="scene2" class="scene">
         <p class="text-invitation">Estas cordialmente invitado al bautismo de:</p>
-        
         <h1 class="title-name gold-shine-text" id="handwritingContainer"></h1>
-
         <p class="text-invitation">
           El cual, se llevará a cabo el<br>
           <strong class="gold-shine-text" style="font-size: 1.4rem;">Sábado 29 de Agosto a las 13:30 hrs</strong>
         </p>
       </div>
 
+      <!-- ESCENA 3: Frase Amigo Fiel (Fondo: video2.mp4) -->
+      <div id="scene3" class="scene">
+        <div class="scripture gold-shine-text" style="font-size: 1.5rem; line-height: 1.5; padding: 0 15px;">
+          Un amigo fiel es un refugio seguro, quien lo encuentra ha encontrado un tesoro.
+        </div>
+      </div>
+
+      <!-- ESCENA 4: Resumen Editorial (Fondo: fondo_resumen.jpg - 10 Segundos) -->
       <div id="scene4" class="scene">
+        <div class="card-editorial">
+          <div class="editorial-tag">Mi Bautismo</div>
+          <div class="editorial-divider"></div>
+          
+          <h2 class="editorial-name">María José Díaz López</h2>
+          
+          <div class="editorial-location-title">Lugar del Evento:</div>
+          <div class="editorial-location-desc">La Iglesia de Jesucristo de los Santos de los Últimos Días</div>
+
+          <div class="editorial-date-box">
+            <span class="date-day-text">Sábado</span>
+            <span class="date-number">29</span>
+            <div style="display: flex; flex-direction: column; text-align: left;">
+              <span class="date-year-text">AGOSTO</span>
+              <span style="font-size: 0.8rem; font-weight: bold; color: #7a520c;">13:30 HRS</span>
+            </div>
+          </div>
+
+          <div class="editorial-divider" style="margin-top: 15px;"></div>
+        </div>
+      </div>
+
+      <!-- ESCENA 5: Resumen Final y Confirmación (Fondo: vestido.jpeg) -->
+      <div id="scene5" class="scene">
         <div class="dress-code-title gold-shine-text">Dress Code:</div>
         <div class="dress-code-sub">Blanco o colores claros.</div>
 
@@ -530,6 +657,7 @@
     </div>
   </div>
 
+  <!-- Modal Guía de Colores -->
   <div class="modal-overlay" id="colorModal" onclick="closeColorModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-title">Código de Vestimenta</div>
@@ -558,6 +686,7 @@
     </div>
   </div>
 
+  <!-- Modal Formulario de Confirmación -->
   <div class="modal-overlay" id="confirmModal" onclick="closeConfirmModal(event)">
     <div class="modal-box" onclick="event.stopPropagation()">
       <div class="modal-title">Confirmar Asistencia</div>
@@ -587,19 +716,22 @@
   </div>
 
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/TU_SCRIPT_ID_AQUI/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw9cdqn9OhugZsO8Dzz-lXButJTg0ZTFRAXv6MTFKE4t28xVqWk4V3a1l-8WPcPdF2t/exec";
 
     const startScreen = document.getElementById('startScreen');
-    const v0 = document.getElementById('video0');
-    const v1 = document.getElementById('video1');
+    const vInicio = document.getElementById('videoInicio');
+    const imgManos = document.getElementById('imgManos');
     const v2 = document.getElementById('video2');
+    const imgFondoResumen = document.getElementById('imgFondoResumen');
     const imgVestido = document.getElementById('imgVestido');
     const audio = document.getElementById('bgMusic');
 
     const s0 = document.getElementById('scene0');
     const s1 = document.getElementById('scene1');
     const s2 = document.getElementById('scene2');
+    const s3 = document.getElementById('scene3');
     const s4 = document.getElementById('scene4');
+    const s5 = document.getElementById('scene5');
 
     const colorModal = document.getElementById('colorModal');
     const confirmModal = document.getElementById('confirmModal');
@@ -624,7 +756,7 @@
       isStarted = true;
       unlockAndPlayAudio();
       startScreen.classList.add('hidden');
-      v0.play().catch(() => {});
+      vInicio.play().catch(() => {});
     }
 
     startScreen.addEventListener('click', initInvitation);
@@ -721,36 +853,55 @@
       }, 400);
     }
 
-    v0.addEventListener('timeupdate', function() {
-      if (v0.currentTime >= 4.75 && !crossfadeDone) {
+    // Lógica de Tiempos y Secuencia de Escenas
+    vInicio.addEventListener('timeupdate', function() {
+      if (vInicio.currentTime >= 4.75 && !crossfadeDone) {
         crossfadeDone = true;
         
-        v1.play().catch(() => {});
-        v0.style.opacity = '0';
-        v1.style.opacity = '1';
-
+        // Cambio a Escena 1 (Video inicio sigue de fondo, aparece cita bíblica)
         s0.classList.remove('active');
         s1.classList.add('active');
 
         setTimeout(() => {
-          v1.style.opacity = '0';
-          v2.style.opacity = '1';
-          v2.play().catch(() => {});
+          // Cambio a Escena 2 (Fondo: manos.jpeg)
+          vInicio.style.opacity = '0';
+          imgManos.style.opacity = '1';
 
           s1.classList.remove('active');
           s2.classList.add('active');
-
           triggerHandwriting();
 
           setTimeout(() => {
-            v2.style.opacity = '0';
-            imgVestido.style.opacity = '1';
+            // Cambio a Escena 3 (Fondo: video2.mp4, Frase Amigo Fiel)
+            imgManos.style.opacity = '0';
+            v2.style.opacity = '1';
+            v2.play().catch(() => {});
 
             s2.classList.remove('active');
-            s4.classList.add('active');
-          }, 14000);
+            s3.classList.add('active');
 
-        }, 10000);
+            setTimeout(() => {
+              // Cambio a Escena 4 (Fondo: fondo_resumen.jpg - Duración 10 segundos)
+              v2.style.opacity = '0';
+              imgFondoResumen.style.opacity = '1';
+
+              s3.classList.remove('active');
+              s4.classList.add('active');
+
+              setTimeout(() => {
+                // Cambio a Escena 5 Final (Fondo: vestido.jpeg, Dress code y Confirmación)
+                imgFondoResumen.style.opacity = '0';
+                imgVestido.style.opacity = '1';
+
+                s4.classList.remove('active');
+                s5.classList.add('active');
+              }, 10000); // 10 segundos de la Escena 4 Resumen
+
+            }, 8000); // Duración de Escena 3
+
+          }, 10000); // Duración de Escena 2
+
+        }, 8000); // Duración de Escena 1
       }
     });
   </script>
