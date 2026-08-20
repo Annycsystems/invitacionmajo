@@ -230,7 +230,7 @@
       opacity: 0;
       filter: blur(3px);
       transform: translateY(4px);
-      animation: appearChar 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      animation: appearChar 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       color: var(--gold-intense);
       text-shadow: 0px 1px 3px rgba(92, 61, 6, 0.5), 0px 1px 1px rgba(255, 255, 255, 0.9);
     }
@@ -607,7 +607,7 @@
       <!-- ESCENA 2: Salmo 91 (Fondo: manos.jpeg) -->
       <div id="scene2" class="scene">
         <div class="glass-card">
-          <div class="scripture gold-shine-text">
+          <div class="scripture">
             Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
             <div class="scripture-ref gold-shine-text">SALMO 91: 11-12</div>
           </div>
@@ -633,7 +633,7 @@
         </div>
       </div>
 
-      <!-- ESCENA 4: Resumen Editorial con Escritura Manual (Fondo: fondo_resumen.jpg) -->
+      <!-- ESCENA 4: Resumen Editorial con Escritura Manual Lenta (Fondo: fondo_resumen.jpg) -->
       <div id="scene4" class="scene">
         <div class="card-editorial">
           <div class="editorial-tag">Mi Bautismo</div>
@@ -787,7 +787,7 @@
     window.addEventListener('touchstart', unlockAndPlayAudio, { once: true });
     window.addEventListener('click', unlockAndPlayAudio, { once: true });
 
-    // Animación de Escritura Manual para el Nombre en Escena 4
+    // Animación de Escritura Manual Pausada
     function triggerHandwriting() {
       const container = document.getElementById('handwritingContainer');
       const lines = ["María José", "Díaz López"];
@@ -808,13 +808,13 @@
             charSpan.textContent = char;
             charSpan.className = 'smooth-char';
             charSpan.style.animationDelay = `${totalDelay}s`;
-            totalDelay += 0.24;
+            totalDelay += 0.45; // Animación más pausada letra por letra
           }
           lineDiv.appendChild(charSpan);
         }
 
         container.appendChild(lineDiv);
-        totalDelay += 0.35;
+        totalDelay += 0.80; // Pausa más larga entre líneas
       });
     }
 
@@ -901,7 +901,7 @@
 
               s3.classList.remove('active');
               s4.classList.add('active');
-              triggerHandwriting(); // Iniciar animación de escritura en Escena 4
+              triggerHandwriting();
 
               setTimeout(() => {
                 imgFondoResumen.style.opacity = '0';
