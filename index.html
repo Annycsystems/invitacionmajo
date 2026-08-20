@@ -6,7 +6,7 @@
   <title>Bautismo - María José Díaz López</title>
 
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="Mi Bautismo - María José Díaz López" />
+  <meta property="og:title" content="Mi Bautismo - María José Díaz López " />
   <meta property="og:description" content="Acompáñanos a celebrar el bautismo de María José. Sábado 29 de Agosto a las 13:30 hrs." />
   <meta property="og:image" content="https://mi-bautismo-maria-jose.vercel.app/Portada.png" />
   <meta property="og:image:width" content="800" />
@@ -214,34 +214,6 @@
       font-weight: 700;
     }
 
-    .title-name {
-      font-family: 'Bettrisia Script', 'Pinyon Script', cursive;
-      font-size: 3.5rem;
-      line-height: 1.4;
-      padding-top: 15px;
-      padding-bottom: 15px;
-      margin: 5px 0;
-      overflow: visible !important;
-    }
-
-    .smooth-char {
-      display: inline-block;
-      opacity: 0;
-      filter: blur(3px);
-      transform: translateY(4px);
-      animation: appearChar 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-      color: var(--gold-bright-solid);
-      text-shadow: 0px 1px 3px rgba(92, 61, 6, 0.4), 0px 1px 1px rgba(255, 255, 255, 0.9);
-    }
-
-    @keyframes appearChar {
-      to {
-        opacity: 1;
-        filter: blur(0px);
-        transform: translateY(0);
-      }
-    }
-
     .scripture {
       font-style: italic;
       font-size: 1.25rem;
@@ -260,7 +232,7 @@
       letter-spacing: 2px;
     }
 
-    /* ESTILOS EDITORIALES ESCENA 4 (Resumen) */
+    /* ESTILOS EDITORIALES ESCENA 4 */
     .card-editorial {
       padding: 20px 15px;
       width: 100%;
@@ -581,25 +553,15 @@
 
     <div class="content-wrapper">
       
-      <!-- ESCENA 0: Intro sin texto -->
-      <div id="scene0" class="scene active"></div>
+      <!-- ESCENA 1: Solo Video de Inicio (Sin Texto) -->
+      <div id="scene1" class="scene active"></div>
 
-      <!-- ESCENA 1: Escritura -->
-      <div id="scene1" class="scene">
+      <!-- ESCENA 2: Salmo 91 (Fondo: manos.jpeg) -->
+      <div id="scene2" class="scene">
         <div class="scripture">
           Pues mandará a sus ángeles por ti, para que te guarden en todos tus caminos.<br>En las manos te llevarán, para que tu pie no tropiece en piedra.
           <div class="scripture-ref gold-shine-text">SALMO 91: 11-12</div>
         </div>
-      </div>
-
-      <!-- ESCENA 2: Nombre de la Niña (Fondo: manos.jpeg) -->
-      <div id="scene2" class="scene">
-        <p class="text-invitation">Estas cordialmente invitado al bautismo de:</p>
-        <h1 class="title-name gold-shine-text" id="handwritingContainer"></h1>
-        <p class="text-invitation">
-          El cual, se llevará a cabo el<br>
-          <strong class="gold-shine-text" style="font-size: 1.4rem;">Sábado 29 de Agosto a las 13:30 hrs</strong>
-        </p>
       </div>
 
       <!-- ESCENA 3: Frase Amigo Fiel (Fondo: video2.mp4) -->
@@ -609,13 +571,13 @@
         </div>
       </div>
 
-      <!-- ESCENA 4: Resumen Editorial (Fondo: fondo_resumen.jpg - 10 Segundos) -->
+      <!-- ESCENA 4: Resumen Editorial (Fondo: fondo_resumen.jpg) -->
       <div id="scene4" class="scene">
         <div class="card-editorial">
           <div class="editorial-tag">Mi Bautismo</div>
           <div class="editorial-divider"></div>
           
-          <h2 class="editorial-name">María José Díaz López</h2>
+          <h2 class="editorial-name">María José<br>Díaz López</h2>
           
           <div class="editorial-location-title">Lugar del Evento:</div>
           <div class="editorial-location-desc">La Iglesia de Jesucristo de los Santos de los Últimos Días</div>
@@ -633,7 +595,7 @@
         </div>
       </div>
 
-      <!-- ESCENA 5: Resumen Final y Confirmación (Fondo: vestido.jpeg) -->
+      <!-- ESCENA 5: Dress Code, Confirmación y Ubicación (Fondo: vestido.jpeg) -->
       <div id="scene5" class="scene">
         <div class="dress-code-title gold-shine-text">Dress Code:</div>
         <div class="dress-code-sub">Blanco o colores claros.</div>
@@ -726,7 +688,6 @@
     const imgVestido = document.getElementById('imgVestido');
     const audio = document.getElementById('bgMusic');
 
-    const s0 = document.getElementById('scene0');
     const s1 = document.getElementById('scene1');
     const s2 = document.getElementById('scene2');
     const s3 = document.getElementById('scene3');
@@ -737,7 +698,7 @@
     const confirmModal = document.getElementById('confirmModal');
 
     let isStarted = false;
-    let crossfadeDone = false;
+    let sequenceStarted = false;
 
     audio.addEventListener('ended', function() {
       this.currentTime = 0;
@@ -764,36 +725,6 @@
 
     window.addEventListener('touchstart', unlockAndPlayAudio, { once: true });
     window.addEventListener('click', unlockAndPlayAudio, { once: true });
-
-    function triggerHandwriting() {
-      const container = document.getElementById('handwritingContainer');
-      const lines = ["María José", "Díaz López"];
-      container.innerHTML = ''; 
-
-      let totalDelay = 0;
-
-      lines.forEach((lineText) => {
-        const lineDiv = document.createElement('div');
-        lineDiv.style.whiteSpace = 'nowrap';
-
-        for (let char of lineText) {
-          const charSpan = document.createElement('span');
-          if (char === ' ') {
-            charSpan.innerHTML = '&nbsp;';
-            charSpan.style.display = 'inline-block';
-          } else {
-            charSpan.textContent = char;
-            charSpan.className = 'smooth-char';
-            charSpan.style.animationDelay = `${totalDelay}s`;
-            totalDelay += 0.26;
-          }
-          lineDiv.appendChild(charSpan);
-        }
-
-        container.appendChild(lineDiv);
-        totalDelay += 0.35;
-      });
-    }
 
     function openColorModal() { colorModal.classList.add('active'); }
     function closeColorModal(e) {
@@ -835,7 +766,7 @@
         }).catch(err => console.log("Error guardando en sheet:", err));
       }
 
-      let textWA = `Hola, confirmo mi asistencia al bautismo de María José.%0A%0A` +
+      let textWA = `Hola, confirmo mi asistencia al bautismo de Majito.%0A%0A` +
                    `👤 *Nombre/Familia:* ${encodeURIComponent(nombre)}%0A` +
                    `👥 *Asistentes:* ${encodeURIComponent(asistentes)}`;
       
@@ -853,26 +784,22 @@
       }, 400);
     }
 
-    // Lógica de Tiempos y Secuencia de Escenas
+    // Lógica Secuencial Precisa
     vInicio.addEventListener('timeupdate', function() {
-      if (vInicio.currentTime >= 4.75 && !crossfadeDone) {
-        crossfadeDone = true;
-        
-        // Cambio a Escena 1 (Video inicio sigue de fondo, aparece cita bíblica)
-        s0.classList.remove('active');
-        s1.classList.add('active');
+      if (vInicio.currentTime >= 1.0 && !sequenceStarted) {
+        sequenceStarted = true;
 
+        // Escena 1 dura los primeros 5 segundos mostrando solo video_inicio.mp4
         setTimeout(() => {
-          // Cambio a Escena 2 (Fondo: manos.jpeg)
+          // Transición a Escena 2 (Fondo: manos.jpeg + Texto Salmo 91)
           vInicio.style.opacity = '0';
           imgManos.style.opacity = '1';
 
           s1.classList.remove('active');
           s2.classList.add('active');
-          triggerHandwriting();
 
           setTimeout(() => {
-            // Cambio a Escena 3 (Fondo: video2.mp4, Frase Amigo Fiel)
+            // Transición a Escena 3 (Fondo: video2.mp4 + Texto Amigo Fiel)
             imgManos.style.opacity = '0';
             v2.style.opacity = '1';
             v2.play().catch(() => {});
@@ -881,7 +808,7 @@
             s3.classList.add('active');
 
             setTimeout(() => {
-              // Cambio a Escena 4 (Fondo: fondo_resumen.jpg - Duración 10 segundos)
+              // Transición a Escena 4 (Fondo: fondo_resumen.jpg + Tarjeta Editorial)
               v2.style.opacity = '0';
               imgFondoResumen.style.opacity = '1';
 
@@ -889,19 +816,19 @@
               s4.classList.add('active');
 
               setTimeout(() => {
-                // Cambio a Escena 5 Final (Fondo: vestido.jpeg, Dress code y Confirmación)
+                // Transición a Escena 5 Final (Fondo: vestido.jpeg + Dress code, RSVP y Maps)
                 imgFondoResumen.style.opacity = '0';
                 imgVestido.style.opacity = '1';
 
                 s4.classList.remove('active');
                 s5.classList.add('active');
-              }, 10000); // 10 segundos de la Escena 4 Resumen
+              }, 10000); // 10 segundos para Escena 4
 
-            }, 8000); // Duración de Escena 3
+            }, 8000); // 8 segundos para Escena 3
 
-          }, 10000); // Duración de Escena 2
+          }, 8000); // 8 segundos para Escena 2
 
-        }, 8000); // Duración de Escena 1
+        }, 4000); // 4 segundos para Escena 1 de video inicial
       }
     });
   </script>
